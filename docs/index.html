@@ -50,10 +50,10 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="#ord">ord</a><ul>
 <li><a href="#intro">Intro</a></li>
 <li><a href="#applets">Applets</a><ul>
+<li><a href="#concitoyen">Concitoyen</a></li>
 <li><a href="#questions">Questions</a></li>
 <li><a href="#commentaires">Commentaires</a></li>
 <li><a href="#disponibilités">Disponibilités</a></li>
-<li><a href="#concitoyen">Concitoyen</a></li>
 <li><a href="#diffusion">Diffusion</a></li>
 </ul></li>
 <li><a href="#architecture">Architecture</a></li>
@@ -68,73 +68,72 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <p>Organiser un rendez-vous hebdomadaire avec des thèmes décidés par vote.</p>
 <p>Organiser le temps de parole des intervenants par vote.</p>
 <h2 id="applets">Applets</h2>
+<h3 id="concitoyen">Concitoyen</h3>
+<!---
+FELLOW-CITIZEN:
+-->
+<h4 id="actions">Actions</h4>
+<ul>
+<li>Participations</li>
+<li>Thématiques</li>
+<li>Commenter le concitoyen</li>
+</ul>
+<h4 id="données">Données</h4>
+<div class="sourceCode"><pre class="sourceCode clojure"><code class="sourceCode clojure">{
+   <span class="at">:id</span> ObjectId
+   <span class="at">:name</span> String
+   <span class="at">:token</span> String
+}</code></pre></div>
+<h4 id="présentation">Présentation</h4>
+<h4 id="diagramme">Diagramme</h4>
 <h3 id="questions">Questions</h3>
 <!---
 QUESTIONS:
 -->
-<h4 id="actions">Actions</h4>
+<h4 id="actions-1">Actions</h4>
 <ul>
 <li>Proposer une question</li>
 <li>Voter pour une question</li>
 <li>Marquer l'intérêt pour une question</li>
 <li>Donner mon temps de parole à un concitoyen sur cette question</li>
 </ul>
-<h4 id="données">Données</h4>
+<h4 id="données-1">Données</h4>
 <div class="sourceCode"><pre class="sourceCode clojure"><code class="sourceCode clojure">{
    <span class="at">:id</span> ObjectId
    <span class="at">:question</span> String
-   <span class="at">:author</span> RefObjectId
-   <span class="at">:date</span> Number
-   <span class="at">:upvotes</span> Vector&lt;RefObjectId&gt;
-   <span class="at">:participants</span> Vector&lt;Hash&lt;RefObjectId, Number&gt;&gt;
+   <span class="at">:author</span> Citizen
+   <span class="at">:date</span> Date
+   <span class="at">:upvotes</span> Set&lt;Hash&lt;Citizen, Time&gt;&gt;
 }</code></pre></div>
-<h4 id="présentation">Présentation</h4>
+<h4 id="présentation-1">Présentation</h4>
 <p><img src="tikz-images/e334e92ee4c820b52aed08cbdbc804d6ae1f5ce0.svg" /></p>
-<h4 id="diagramme">Diagramme</h4>
+<h4 id="diagramme-1">Diagramme</h4>
 <h3 id="commentaires">Commentaires</h3>
 <!---
 COMMENTS:
 -->
-<h4 id="actions-1">Actions</h4>
+<h4 id="actions-2">Actions</h4>
 <ul>
 <li>Commenter une question</li>
 <li>Commenter un commentaire</li>
 </ul>
-<h4 id="données-1">Données</h4>
+<h4 id="données-2">Données</h4>
 <div class="sourceCode"><pre class="sourceCode clojure"><code class="sourceCode clojure">{
    <span class="at">:id</span> ObjectId
    <span class="at">:comment</span> String
    <span class="at">:on</span> RefObjectId
-   <span class="at">:author</span> RefObjectId
-   <span class="at">:date</span> Number
-   <span class="at">:upvotes</span> Vector&lt;RefObjectId&gt;
+   <span class="at">:author</span> Citizen
+   <span class="at">:date</span> Date
+   <span class="at">:upvotes</span> Set&lt;Citizen&gt;
 }</code></pre></div>
-<h4 id="présentation-1">Présentation</h4>
+<h4 id="présentation-2">Présentation</h4>
 <p><img src="tikz-images/042106bb1d86e0af7bcde31da7595ad9189b7c55.svg" /></p>
-<h4 id="diagramme-1">Diagramme</h4>
+<h4 id="diagramme-2">Diagramme</h4>
 <h3 id="disponibilités">Disponibilités</h3>
 <ul>
 <li>Indiquer les disponibilités</li>
 <li>Indiquer les indisponibilités</li>
 </ul>
-<h3 id="concitoyen">Concitoyen</h3>
-<!---
-FELLOW-CITIZEN:
--->
-<h4 id="actions-2">Actions</h4>
-<ul>
-<li>Participations</li>
-<li>Thématiques</li>
-<li>Commenter le concitoyen</li>
-</ul>
-<h4 id="données-2">Données</h4>
-<div class="sourceCode"><pre class="sourceCode clojure"><code class="sourceCode clojure">{
-   <span class="at">:id</span> ObjectId
-   <span class="at">:name</span> String
-   <span class="at">:token</span> String
-}</code></pre></div>
-<h4 id="présentation-2">Présentation</h4>
-<h4 id="diagramme-2">Diagramme</h4>
 <h3 id="diffusion">Diffusion</h3>
 <h4 id="actions-3">Actions</h4>
 <ul>
@@ -146,8 +145,8 @@ FELLOW-CITIZEN:
 <div class="sourceCode"><pre class="sourceCode clojure"><code class="sourceCode clojure">{
    <span class="at">:id</span> ObjectId
    <span class="at">:date</span> Number
-   <span class="at">:questions</span> Vector&lt;Question&gt;
-   <span class="at">:participants</span> Vector&lt;Hash&lt;Citizen, Time&gt;&gt;
+   <span class="at">:questions</span> Set&lt;Question&gt;
+   <span class="at">:participants</span> Set&lt;Hash&lt;Citizen, Time&gt;&gt;
 }</code></pre></div>
 <h4 id="présentation-3">Présentation</h4>
 <h4 id="diagramme-3">Diagramme</h4>

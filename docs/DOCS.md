@@ -15,6 +15,32 @@ Organiser le temps de parole des intervenants par vote.
 
 ## Applets
 
+### Concitoyen
+
+<!---
+FELLOW-CITIZEN:
+-->
+#### Actions
+
+-   Participations
+-   Thématiques
+-   Commenter le concitoyen
+
+#### Données
+
+``` {.clojure}
+{
+   :id ObjectId
+   :name String
+   :token String
+}
+```
+
+#### Présentation
+
+#### Diagramme
+
+
 ### Questions
 
 <!---
@@ -33,10 +59,9 @@ QUESTIONS:
 {
    :id ObjectId
    :question String
-   :author RefObjectId
-   :date Number
-   :upvotes Vector<RefObjectId>
-   :participants Vector<Hash<RefObjectId, Number>>
+   :author Citizen
+   :date Date
+   :upvotes Set<Hash<Citizen, Time>>
 }
 ```
 
@@ -79,9 +104,9 @@ COMMENTS:
    :id ObjectId
    :comment String
    :on RefObjectId
-   :author RefObjectId
-   :date Number
-   :upvotes Vector<RefObjectId>
+   :author Citizen
+   :date Date
+   :upvotes Set<Citizen>
 }
 ```
 
@@ -98,31 +123,6 @@ COMMENTS:
 -   Indiquer les disponibilités
 -   Indiquer les indisponibilités
 
-### Concitoyen
-
-<!---
-FELLOW-CITIZEN:
--->
-#### Actions
-
--   Participations
--   Thématiques
--   Commenter le concitoyen
-
-#### Données
-
-``` {.clojure}
-{
-   :id ObjectId
-   :name String
-   :token String
-}
-```
-
-#### Présentation
-
-#### Diagramme
-
 ### Diffusion
 
 #### Actions
@@ -137,8 +137,8 @@ FELLOW-CITIZEN:
 {
    :id ObjectId
    :date Number
-   :questions Vector<Question>
-   :participants Vector<Hash<Citizen, Time>>
+   :questions Set<Question>
+   :participants Set<Hash<Citizen, Time>>
 }
 ```
 
