@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code > span.dt { color: #204a87; } /* DataType */
+code > span.dv { color: #0000cf; } /* DecVal */
+code > span.bn { color: #0000cf; } /* BaseN */
+code > span.fl { color: #0000cf; } /* Float */
+code > span.ch { color: #4e9a06; } /* Char */
+code > span.st { color: #4e9a06; } /* String */
+code > span.co { color: #8f5902; font-style: italic; } /* Comment */
+code > span.ot { color: #8f5902; } /* Other */
+code > span.al { color: #ef2929; } /* Alert */
+code > span.fu { color: #000000; } /* Function */
+code > span.er { color: #a40000; font-weight: bold; } /* Error */
+code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #000000; } /* Constant */
+code > span.sc { color: #000000; } /* SpecialChar */
+code > span.vs { color: #4e9a06; } /* VerbatimString */
+code > span.ss { color: #4e9a06; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #000000; } /* Variable */
+code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code > span.ex { } /* Extension */
+code > span.at { color: #c4a000; } /* Attribute */
+code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+</head>
+<body>
+<div id="TOC">
+<ul>
+<li><a href="#ord">ord</a><ul>
+<li><a href="#intro">Intro</a></li>
+<li><a href="#applets">Applets</a><ul>
+<li><a href="#questions">Questions</a></li>
+<li><a href="#commentaires">Commentaires</a></li>
+<li><a href="#disponibilités">Disponibilités</a></li>
+<li><a href="#concitoyen">Concitoyen</a></li>
+<li><a href="#diffusion">Diffusion</a></li>
+</ul></li>
+<li><a href="#architecture">Architecture</a></li>
+</ul></li>
+</ul>
+</div>
+<h1 id="ord">ord</h1>
+<h2 id="intro">Intro</h2>
+<p>Recenser les disponibilités.</p>
+<p>Recenser les questions d'intérêts.</p>
+<p>Réunir les personnes autour des questions d'intérêt selon leur disponibilités.</p>
+<p>Organiser un rendez-vous hebdomadaire avec des thèmes décidés par vote.</p>
+<p>Organiser le temps de parole des intervenants par vote.</p>
+<h2 id="applets">Applets</h2>
+<h3 id="questions">Questions</h3>
+<!---
+QUESTIONS:
+-->
+<h4 id="actions">Actions</h4>
+<ul>
+<li>Proposer une question</li>
+<li>Voter pour une question</li>
+<li>Marquer l'intérêt pour une question</li>
+<li>Donner mon temps de parole à un concitoyen sur cette question</li>
+</ul>
+<h4 id="données">Données</h4>
+<div class="sourceCode"><pre class="sourceCode clojure"><code class="sourceCode clojure">{
+   <span class="at">:id</span> ObjectId
+   <span class="at">:question</span> String
+   <span class="at">:author</span> RefObjectId
+   <span class="at">:date</span> Number
+   <span class="at">:upvotes</span> Vector&lt;RefObjectId&gt;
+   <span class="at">:participants</span> Vector&lt;Hash&lt;RefObjectId, Number&gt;&gt;
+}</code></pre></div>
+<h4 id="présentation">Présentation</h4>
+<p><img src="tikz-images/e334e92ee4c820b52aed08cbdbc804d6ae1f5ce0.svg" /></p>
+<h4 id="diagramme">Diagramme</h4>
+<h3 id="commentaires">Commentaires</h3>
+<!---
+COMMENTS:
+-->
+<h4 id="actions-1">Actions</h4>
+<ul>
+<li>Commenter une question</li>
+<li>Commenter un commentaire</li>
+</ul>
+<h4 id="données-1">Données</h4>
+<div class="sourceCode"><pre class="sourceCode clojure"><code class="sourceCode clojure">{
+   <span class="at">:id</span> ObjectId
+   <span class="at">:comment</span> String
+   <span class="at">:on</span> RefObjectId
+   <span class="at">:author</span> RefObjectId
+   <span class="at">:date</span> Number
+   <span class="at">:upvotes</span> Vector&lt;RefObjectId&gt;
+}</code></pre></div>
+<h4 id="présentation-1">Présentation</h4>
+<p><img src="tikz-images/042106bb1d86e0af7bcde31da7595ad9189b7c55.svg" /></p>
+<h4 id="diagramme-1">Diagramme</h4>
+<h3 id="disponibilités">Disponibilités</h3>
+<ul>
+<li>Indiquer les disponibilités</li>
+<li>Indiquer les indisponibilités</li>
+</ul>
+<h3 id="concitoyen">Concitoyen</h3>
+<!---
+FELLOW-CITIZEN:
+-->
+<h4 id="actions-2">Actions</h4>
+<ul>
+<li>Participations</li>
+<li>Thématiques</li>
+<li>Commenter le concitoyen</li>
+</ul>
+<h4 id="données-2">Données</h4>
+<div class="sourceCode"><pre class="sourceCode clojure"><code class="sourceCode clojure">{
+   <span class="at">:id</span> ObjectId
+   <span class="at">:name</span> String
+   <span class="at">:token</span> String
+}</code></pre></div>
+<h4 id="présentation-2">Présentation</h4>
+<h4 id="diagramme-2">Diagramme</h4>
+<h3 id="diffusion">Diffusion</h3>
+<h4 id="actions-3">Actions</h4>
+<ul>
+<li>Programmer une diffusion</li>
+<li>Inviter les participants</li>
+<li>Promouvoir la diffusion</li>
+</ul>
+<h4 id="données-3">Données</h4>
+<div class="sourceCode"><pre class="sourceCode clojure"><code class="sourceCode clojure">{
+   <span class="at">:id</span> ObjectId
+   <span class="at">:date</span> Number
+   <span class="at">:questions</span> Vector&lt;Question&gt;
+   <span class="at">:participants</span> Vector&lt;Hash&lt;Citizen, Time&gt;&gt;
+}</code></pre></div>
+<h4 id="présentation-3">Présentation</h4>
+<h4 id="diagramme-3">Diagramme</h4>
+<h2 id="architecture">Architecture</h2>
+<p><img src="tikz-images/2d80e6f06afa414c6692f2acccdca9f44256c3c4.svg" /></p>
+<ul>
+<li>Question</li>
+<li>Comment</li>
+<li>QuestionsList</li>
+<li>CommentsList</li>
+<li>Upvotes</li>
+</ul>
+</body>
+</html>
