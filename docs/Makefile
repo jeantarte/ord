@@ -1,7 +1,7 @@
 STYLE=tango
 TOCTITLE='Table des matières'
 
-INPUT=DOCS.md
+INPUT=MANUAL.md
 OUTPUT=index.html
 
 
